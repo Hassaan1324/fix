@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fix Hoti Hu 😂</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #ffb6d9, #c9a7ff, #ffc6e5);
+  overflow: hidden;
+}
+
+.card {
+  width: 88%;
+  max-width: 390px;
+  padding: 40px 22px;
+  text-align: center;
+  background: rgba(255,255,255,0.72);
+  border: 2px solid white;
+  border-radius: 30px;
+  box-shadow: 0 15px 40px #9e55a855;
+  animation: float 3s ease-in-out infinite;
+  z-index: 2;
+}
+
+h1 {
+  font-size: 34px;
+  color: #d63384;
+  animation: pop 1s ease;
+}
+
+.emoji {
+  font-size: 65px;
+  animation: bounce 1.5s infinite;
+}
+
+#message {
+  min-height: 75px;
+  font-size: 23px;
+  font-weight: bold;
+  color: #8e3185;
+  margin: 25px 0;
+  transition: 0.3s;
+}
+
+button {
+  border: none;
+  padding: 16px 30px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(45deg, #ff4fa3, #9b55ff);
+  box-shadow: 0 7px 18px #b14bba66;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-15px) rotate(8deg); }
+}
+
+@keyframes pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+.heart {
+  position: absolute;
+  bottom: -30px;
+  font-size: 24px;
+  animation: rise 5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+  <div class="emoji" id="emoji">🙄</div>
+
+  <h1>Fix hoti hu 💅</h1>
+
+  <p id="message">Achaa ji? Dekhte hain 😂</p>
+
+  <button onclick="nextMessage()">
+    Click karo 😏
+  </button>
+</div>
+
+<script>
+let count = 0;
+
+function nextMessage() {
+  count++;
+
+  const message = document.getElementById("message");
+  const emoji = document.getElementById("emoji");
+  const card = document.getElementById("card");
+
+  card.classList.remove("shake");
+  void card.offsetWidth;
+  card.classList.add("shake");
+
+  if (count % 2 === 1) {
+    message.innerHTML = "Unblock to phir bhi nahi karna 😂";
+    emoji.innerHTML = "😏";
+  } else {
+    message.innerHTML = "Jul vo pisti bari ayi 🤣💀";
+    emoji.innerHTML = "😭";
+  }
+
+  createHearts();
+}
+
+function createHearts() {
+  for(let i = 0; i < 12; i++) {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = ["💗","😂","💀","✨","💕"][
+      Math.floor(Math.random()*5)
+    ];
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (2 + Math.random()*3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+  }
+}
+</script>
+
+</body>
+</html>
